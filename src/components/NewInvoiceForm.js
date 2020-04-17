@@ -4,20 +4,39 @@ import * as actions from '../actions';
 
 class NewInvoiceForm extends Component {
 
+    state = {
+        invoiceNumber: '',
+        invoiceProduct: ''
+    }
+
     componentWillMount() {
         this.props.fetchProducts();
     }
 
-    handleSubmit(event) {
+    handleChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        })
+    }
+
+    saveNewInvoice = (event) => {
         event.preventDefault();
-        console.log('Will submit a new invoice')
+        const form = {
+            invoiceNumber: this.state.invoiceNumber,
+            invoiceProduct: (this.state.invoiceProduct == '' ? Array.from(this.props.data.products)[0] : this.state.invoiceProduct)
+        }
+        if (!form.invoiceNumber) {
+            alert('Invoice number be empty');
+        }
+        console.log(form)
+        // this.props.saveInvoice();
     }
 
     renderProductOptions = () => {
         const {data} = this.props;
         const arrData = Array.from(data.products);
         return arrData.map((elem, i) => {
-            return <option value={elem} key={i}>{elem}</option>
+            return <option value={elem} key={i} >{elem}</option>
         })
     }
 
@@ -30,17 +49,17 @@ class NewInvoiceForm extends Component {
                 {!data.products ?
                 <div>Loading </div>
                 :
-                <form onSubmit={this.handleSubmit}>
+                <form onSubmit={this.saveNewInvoice}>
                     <div>
                         <label>
                             Invoice number
-                            <input type="text" name="name" />
+                            <input type="text" name="invoiceNumber" onChange={e => this.handleChange(e)} />
                         </label>
                     </div>
                     <div>
                         <label>
                         Product:
-                            <select>
+                            <select name="invoiceProduct" onChange={e => this.handleChange(e)}>
                                 {this.renderProductOptions()}
                             </select>
                         </label>
