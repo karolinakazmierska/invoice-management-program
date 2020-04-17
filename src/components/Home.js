@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import * as actions from '../actions';
 import InvoicesList from './InvoicesList';
 import NewInvoiceForm from './NewInvoiceForm';
+import {Grid, Container, Button, Typography} from '@material-ui/core';
 
 class Home extends Component {
     state = {
@@ -18,11 +19,18 @@ class Home extends Component {
     renderInvoiceList = () => {
         if (!this.state.showNewInvoiceForm) {
             return (
-                <div>
-                    <div>This is Home</div>
-                    <button onClick={() => this.showNewInvoiceForm()}>Create a new invoice</button>
+                <Container maxWidth="sm">
+                <Typography>Welcome to Invoice Management System</Typography>
+                    <Grid
+                        container
+                        justify="flex-end"
+                        alignItems="stretch"
+                        spacing={-2}
+                    >
+                        <Button variant="contained" color="primary" onClick={() => this.showNewInvoiceForm()}>Create a new invoice</Button>
+                    </Grid>
                     <InvoicesList />
-                </div>
+                </Container>
             )
         }
     }
@@ -36,7 +44,7 @@ class Home extends Component {
 
     render() {
         return (
-            <div>
+            <div className="homeContainer">
                 <div>
                     {this.renderInvoiceList()}
                 </div>

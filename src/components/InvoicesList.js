@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../actions';
+import {CircularProgress, Container, Button, Typography, List, ListItem, ListItemText} from '@material-ui/core';
 
 class InvoicesList extends Component {
 
@@ -10,10 +11,13 @@ class InvoicesList extends Component {
 
     renderInvoices() {
         const {data} = this.props;
-        const arrData = Array.from(data.invoices);
+        let arrData = [];
+        for (const key in data.invoices) {
+            arrData.push(data.invoices[key]);
+        }
         return arrData.map((obj, i) => {
             return (
-                <div key={i}>Invoice number {obj.id}</div>
+                <ListItem divider={true} key={i}><Typography color="textSecondary">Invoice number: {obj.id}</Typography></ListItem>
             )
         });
     }
@@ -21,8 +25,8 @@ class InvoicesList extends Component {
     render() {
         const {data} = this.props;
         return (<div>
-                <div>Your invoices</div>
-                {!data.invoices ? <div>Loading </div> : this.renderInvoices()}
+                <Typography >Your invoices</Typography>
+                {!data.invoices ? <CircularProgress /> : this.renderInvoices()}
             </div>
         )
     }
