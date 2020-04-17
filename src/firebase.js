@@ -9,4 +9,5 @@ const config = {
 }
 firebase.initializeApp(config);
 const databaseRef = firebase.database().ref();
-export const invoicesRef = databaseRef.child("invoices")
+export const invoicesRef = databaseRef.child("invoices");
+export const productsRef = databaseRef.child("products");

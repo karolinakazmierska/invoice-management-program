@@ -8,5 +8,6 @@
             "id": "2",
             "product": "Two"
         }
-    ]
+    ],
+    "products": ["programming services", "apples", "oranges"]
 }

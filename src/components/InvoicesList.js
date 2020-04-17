@@ -10,23 +10,19 @@ class InvoicesList extends Component {
 
     renderInvoices() {
         const {data} = this.props;
-        const arrData = Array.from(data);
-        if (!arrData) {
-            return <div>You have no invoices</div>
-        } else {
-            return arrData.map((obj) => {
-                return (
-                    <div>Invoice number {obj.id}</div>
-                )
-            });
-        }
-
+        const arrData = Array.from(data.invoices);
+        return arrData.map((obj, i) => {
+            return (
+                <div key={i}>Invoice number {obj.id}</div>
+            )
+        });
     }
 
     render() {
+        const {data} = this.props;
         return (<div>
                 <div>Your invoices</div>
-                {this.renderInvoices()}
+                {!data.invoices ? <div>Loading </div> : this.renderInvoices()}
             </div>
         )
     }
