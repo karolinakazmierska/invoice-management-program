@@ -1,0 +1,5 @@
+const FETCH_INVOICES = 'FETCH_INVOICES'
+
+export {
+    FETCH_INVOICES
+};

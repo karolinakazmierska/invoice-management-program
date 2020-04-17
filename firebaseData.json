@@ -1,0 +1,12 @@
+{
+    "invoices": [
+        {
+            "id": "1",
+            "product": "One"
+        },
+        {
+            "id": "2",
+            "product": "Two"
+        }
+    ]
+}
