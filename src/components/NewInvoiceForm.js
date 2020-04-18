@@ -7,11 +7,20 @@ class NewInvoiceForm extends Component {
 
     state = {
         invoiceNumber: '',
-        invoiceProduct: ''
+        invoiceProduct: '',
+        invoiceIds: []
     }
 
     UNSAFE_componentWillMount() {
         this.props.fetchProducts();
+        const {data} = this.props;
+        let arrData = [];
+        for (const key in data.invoices) {
+            arrData.push(data.invoices[key].id);
+        }
+        this.setState({
+            invoiceIds: arrData
+        })
     }
 
     handleChange = (e) => {
@@ -26,10 +35,14 @@ class NewInvoiceForm extends Component {
             id: this.state.invoiceNumber,
             product: this.state.invoiceProduct || ''
         }
+        const isDuplicate = this.state.invoiceIds.includes(newInvoice.id)
+
         if (!newInvoice.id) {
             alert('Invoice number cannot be empty');
         } else if (!newInvoice.product) {
             alert('Product field cannot be empty');
+        } else if (isDuplicate) {
+            alert('An invoice with this number already exists');
         } else {
             this.props.saveInvoice(newInvoice);
             this.props.hideNewInvoiceForm();

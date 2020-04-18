@@ -1,12 +1,17 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import * as actions from '../actions';
-import { CircularProgress, Typography, ListItem } from '@material-ui/core';
+import { CircularProgress, Typography, ListItem, ListItemSecondaryAction,  IconButton } from '@material-ui/core';
+import Delete from '@material-ui/icons/Delete'
 
 class InvoicesList extends Component {
 
     UNSAFE_componentWillMount() {
         this.props.fetchInvoices();
+    }
+
+    handleDelete = (obj) => {
+        this.props.deleteInvoice(obj);
     }
 
     renderInvoices() {
@@ -17,7 +22,14 @@ class InvoicesList extends Component {
         }
         return arrData.map((obj, i) => {
             return (
-                <ListItem divider={true} key={i}><Typography color="textSecondary">Invoice number: {obj.id}</Typography></ListItem>
+                <ListItem divider={true} key={i} button ContainerComponent="div">
+                    <Typography color="textSecondary">Invoice number: {obj.id}</Typography>
+                    <ListItemSecondaryAction >
+                        <IconButton color='primary' onClick={() => this.handleDelete(obj)} ><Delete/></IconButton>
+                    </ListItemSecondaryAction>
+                </ListItem>
+
+
             )
         });
     }

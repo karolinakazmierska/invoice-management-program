@@ -6,6 +6,15 @@ const FETCH_PRODUCTS = 'FETCH_PRODUCTS';
 export const saveInvoice = (newInvoice) => async dispatch => {
     invoicesRef.push().set(newInvoice);
 };
+export const deleteInvoice = (invoice) => async dispatch => {
+    let query = invoicesRef.orderByChild("id").equalTo(invoice.id);
+    query.once('value', function(snapshot) {
+        snapshot.forEach(function(child) {
+            console.log('###', child)
+            child.ref.remove();
+        })
+    })
+};
 export const fetchInvoices = () => async dispatch => {
     invoicesRef.on("value", snapshot => {
         dispatch({
