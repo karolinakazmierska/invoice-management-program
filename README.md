@@ -7,4 +7,4 @@ To install dependencies and start the app, run:
 ### `npm install`
 ### `npm start`
 
-Web version available [here](https://google.com).
+Web version available [here](https://karolinakazmierska.github.io/invoice-management-program/).
