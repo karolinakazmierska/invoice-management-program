@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import * as actions from '../actions';
 import InvoicesList from './InvoicesList';
 import NewInvoiceForm from './NewInvoiceForm';
-import {Grid, Container, Button, Typography} from '@material-ui/core';
+import { Container, Button, Typography } from '@material-ui/core';
 
 class Home extends Component {
     state = {
@@ -20,15 +20,12 @@ class Home extends Component {
         if (!this.state.showNewInvoiceForm) {
             return (
                 <Container maxWidth="sm">
-                <Typography>Welcome to Invoice Management System</Typography>
-                    <Grid
-                        container
-                        justify="flex-end"
-                        alignItems="stretch"
-                        spacing={-2}
-                    >
-                        <Button variant="contained" color="primary" onClick={() => this.showNewInvoiceForm()}>Create a new invoice</Button>
-                    </Grid>
+                    <div style={{ padding: 20 }}>
+                        <Typography variant="h5" align="center">Welcome to Invoice Management System</Typography>
+                    </div>
+                    <div style={{ paddingBottom: 20, textAlign: 'center'  }}>
+                        <Button variant="contained" color="primary" align="center" onClick={() => this.showNewInvoiceForm()}>Create a new invoice</Button>
+                    </div>
                     <InvoicesList />
                 </Container>
             )

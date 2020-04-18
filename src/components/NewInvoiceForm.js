@@ -10,7 +10,7 @@ class NewInvoiceForm extends Component {
         invoiceProduct: ''
     }
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         this.props.fetchProducts();
     }
 
@@ -24,10 +24,12 @@ class NewInvoiceForm extends Component {
         event.preventDefault();
         const newInvoice = {
             id: this.state.invoiceNumber,
-            product: (this.state.invoiceProduct == '' ? Array.from(this.props.data.products)[0] : this.state.invoiceProduct)
+            product: this.state.invoiceProduct || ''
         }
         if (!newInvoice.id) {
             alert('Invoice number cannot be empty');
+        } else if (!newInvoice.product) {
+            alert('Product field cannot be empty');
         } else {
             this.props.saveInvoice(newInvoice);
             this.props.hideNewInvoiceForm();
@@ -46,51 +48,40 @@ class NewInvoiceForm extends Component {
         const {data} = this.props;
         return (
             <Container maxWidth="sm">
-                <Typography>Add a new invoice</Typography>
+                <div style={{ paddingBottom: 20, paddingTop: 20 }}>
+                    <Typography variant="h6">Add a new invoice</Typography>
+                </div>
 
                 {!data.products ?
                  <CircularProgress />
                 :
                 <form onSubmit={this.saveNewInvoice}>
-
-                <Grid
-                    container
-                    direction="column"
-                    justify="flex-start"
-                    alignItems="stretch"
-                    spacing={-2}
-                >
-                    <Grid
-                        container
-                        direction="row"
-                        justify="space-between"
-                        alignItems="flex-start"
-                    >
-                        <FormLabel>Invoice number</FormLabel>
-                        <TextField id="outlined-basic" label="Outlined" variant="outlined" type="text" name="invoiceNumber" onChange={e => this.handleChange(e)} />
+                    <Grid container direction="column">
+                        <Grid>
+                            <div style={{ paddingBottom: 20 }}>
+                                <Grid item xs={12} sm={6}>
+                                    <FormLabel>Invoice number</FormLabel>
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <TextField style={{minWidth: '100%'}} id="outlined-basic" variant="outlined" type="text" name="invoiceNumber" onChange={e => this.handleChange(e)} />
+                                </Grid>
+                            </div>
+                            <div style={{ paddingBottom: 20 }}>
+                                <Grid item xs={12} sm={6}>
+                                    <FormLabel>Product:</FormLabel>
+                                </Grid>
+                                <Grid item xs={12} sm={6}>
+                                    <Select style={{minWidth: '100%'}} variant="outlined" name="invoiceProduct" value={this.state.invoiceProduct} onChange={e => this.handleChange(e)}>
+                                        {this.renderProductOptions()}
+                                    </Select>
+                                </Grid>
+                            </div>
+                        </Grid>
+                        <Grid container justify="space-between">
+                            <Button variant="contained" color="secondary" onClick={this.props.hideNewInvoiceForm}>Cancel</Button>
+                            <Button variant="contained" color="primary" type="submit" value="Submit">Submit</Button>
+                        </Grid>
                     </Grid>
-                    <Grid
-                        container
-                        direction="row"
-                        justify="space-between"
-                        alignItems="flex-start"
-                    >
-                        <FormLabel>Product:</FormLabel>
-                        <Select autoWidth="true" displayEmpty="true" label="Outlined" variant="outlined" name="invoiceProduct" onChange={e => this.handleChange(e)}>
-                            {this.renderProductOptions()}
-                        </Select>
-                    </Grid>
-                    <Grid
-                        container
-                        direction="row"
-                        justify="space-between"
-                        alignItems="flex-start"
-                    >
-                        <Button variant="contained" color="secondary" onClick={this.props.hideNewInvoiceForm}>Cancel</Button>
-                        <Button variant="contained" color="primary" type="submit" value="Submit">Submit</Button>
-                    </Grid>
-
-                </Grid>
                 </form>
                 }
 

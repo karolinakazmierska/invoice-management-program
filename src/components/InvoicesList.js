@@ -1,11 +1,11 @@
-import React, {Component} from 'react';
-import {connect} from 'react-redux';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import * as actions from '../actions';
-import {CircularProgress, Container, Button, Typography, List, ListItem, ListItemText} from '@material-ui/core';
+import { CircularProgress, Typography, ListItem } from '@material-ui/core';
 
 class InvoicesList extends Component {
 
-    componentWillMount() {
+    UNSAFE_componentWillMount() {
         this.props.fetchInvoices();
     }
 
