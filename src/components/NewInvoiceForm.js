@@ -70,7 +70,7 @@ class NewInvoiceForm extends Component {
                                     <FormLabel>Invoice number</FormLabel>
                                 </Grid>
                                 <Grid item xs={12} sm={6}>
-                                    <TextField style={{minWidth: '100%'}} id="outlined-basic" variant="outlined" type="text" name="invoiceNumber" onChange={e => this.handleChange(e)} />
+                                    <TextField style={{minWidth: '100%'}} id="outlined-basic" variant="outlined" type="text" name="invoiceNumber" placeholder="e.g. 1/2020" onChange={e => this.handleChange(e)} />
                                 </Grid>
                             </div>
                             <div style={{ paddingBottom: 20 }}>

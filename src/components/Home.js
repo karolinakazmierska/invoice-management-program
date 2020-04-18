@@ -19,7 +19,7 @@ class Home extends Component {
             return (
                 <Container maxWidth="sm">
                     <div style={{ padding: 20 }}>
-                        <Typography variant="h5" align="center">Welcome to Invoice Management System</Typography>
+                        <Typography variant="h5" align="center">Invoice Management System</Typography>
                     </div>
                     <div style={{ paddingBottom: 20, textAlign: 'center'  }}>
                         <Button variant="contained" color="primary" align="center" onClick={() => this.showNewInvoiceForm()}>Create a new invoice</Button>

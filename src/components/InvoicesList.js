@@ -23,7 +23,10 @@ class InvoicesList extends Component {
         return arrData.map((obj, i) => {
             return (
                 <ListItem divider={true} key={i} button ContainerComponent="div">
-                    <Typography color="textSecondary">Invoice number: {obj.id}</Typography>
+                    <div>
+                        <Typography color="textPrimary">Invoice number: {obj.id}</Typography>
+                        <Typography color="textSecondary" variant="body2">{obj.product}</Typography>
+                    </div>
                     <ListItemSecondaryAction >
                         <IconButton color='primary' onClick={() => this.handleDelete(obj)} ><Delete/></IconButton>
                     </ListItemSecondaryAction>
