@@ -1,0 +1,19 @@
+{
+  "files": {
+    "main.js": "/invoice-management-program/static/js/main.95e6aff6.chunk.js",
+    "main.js.map": "/invoice-management-program/static/js/main.95e6aff6.chunk.js.map",
+    "runtime-main.js": "/invoice-management-program/static/js/runtime-main.5284b35d.js",
+    "runtime-main.js.map": "/invoice-management-program/static/js/runtime-main.5284b35d.js.map",
+    "static/js/2.72ec2344.chunk.js": "/invoice-management-program/static/js/2.72ec2344.chunk.js",
+    "static/js/2.72ec2344.chunk.js.map": "/invoice-management-program/static/js/2.72ec2344.chunk.js.map",
+    "index.html": "/invoice-management-program/index.html",
+    "precache-manifest.ba17cf6efc32edcdc6ff0100c7c92006.js": "/invoice-management-program/precache-manifest.ba17cf6efc32edcdc6ff0100c7c92006.js",
+    "service-worker.js": "/invoice-management-program/service-worker.js",
+    "static/js/2.72ec2344.chunk.js.LICENSE.txt": "/invoice-management-program/static/js/2.72ec2344.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.5284b35d.js",
+    "static/js/2.72ec2344.chunk.js",
+    "static/js/main.95e6aff6.chunk.js"
+  ]
+}
