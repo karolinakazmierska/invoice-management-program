@@ -10,7 +10,6 @@ export const deleteInvoice = (invoice) => async dispatch => {
     let query = invoicesRef.orderByChild("id").equalTo(invoice.id);
     query.once('value', function(snapshot) {
         snapshot.forEach(function(child) {
-            console.log('###', child)
             child.ref.remove();
         })
     })

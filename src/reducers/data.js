@@ -1,4 +1,4 @@
-import { FETCH_INVOICES, FETCH_PRODUCTS, SAVE_INVOICE } from '../actions/types';
+import { FETCH_INVOICES, FETCH_PRODUCTS, SAVE_INVOICE, DELETE_INVOICE } from '../actions/types';
 
 export default (state = {}, action) => {
     switch(action.type) {
@@ -11,6 +11,10 @@ export default (state = {}, action) => {
                 products: action.payload
             })
         case SAVE_INVOICE:
+            return Object.assign({}, state, {
+                invoices: action.payload
+            })
+        case DELETE_INVOICE:
             return Object.assign({}, state, {
                 invoices: action.payload
             })

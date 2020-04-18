@@ -4,13 +4,11 @@ import * as actions from '../actions';
 import {CircularProgress, Container, Button, Typography, TextField, Select, MenuItem, Grid, FormLabel} from '@material-ui/core';
 
 class NewInvoiceForm extends Component {
-
     state = {
         invoiceNumber: '',
         invoiceProduct: '',
         invoiceIds: []
     }
-
     UNSAFE_componentWillMount() {
         this.props.fetchProducts();
         const {data} = this.props;
@@ -22,13 +20,11 @@ class NewInvoiceForm extends Component {
             invoiceIds: arrData
         })
     }
-
     handleChange = (e) => {
         this.setState({
             [e.target.name]: e.target.value
         })
     }
-
     saveNewInvoice = (event) => {
         event.preventDefault();
         const newInvoice = {
@@ -48,7 +44,6 @@ class NewInvoiceForm extends Component {
             this.props.hideNewInvoiceForm();
         }
     }
-
     renderProductOptions = () => {
         const {data} = this.props;
         const arrData = Array.from(data.products);
@@ -56,7 +51,6 @@ class NewInvoiceForm extends Component {
             return <MenuItem value={elem} key={i}>{elem}</MenuItem>
         })
     }
-
     render() {
         const {data} = this.props;
         return (
@@ -108,5 +102,4 @@ const mapStateToProps = ({data}) => {
         data
     }
 }
-
 export default connect(mapStateToProps, actions)(NewInvoiceForm);

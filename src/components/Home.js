@@ -9,13 +9,11 @@ class Home extends Component {
     state = {
         showNewInvoiceForm: false,
     };
-
     renderNewInvoiceForm = () => {
         if (this.state.showNewInvoiceForm) {
             return <NewInvoiceForm hideNewInvoiceForm={this.hideNewInvoiceForm} />
         }
     }
-
     renderInvoiceList = () => {
         if (!this.state.showNewInvoiceForm) {
             return (
@@ -31,14 +29,12 @@ class Home extends Component {
             )
         }
     }
-
     showNewInvoiceForm = () => {
         this.setState({showNewInvoiceForm: true})
     }
     hideNewInvoiceForm = () => {
         this.setState({showNewInvoiceForm: false})
     }
-
     render() {
         return (
             <div className="homeContainer">
@@ -58,5 +54,4 @@ const mapStateToProps = ({data}) => {
         data
     }
 }
-
 export default connect(mapStateToProps, actions)(Home);

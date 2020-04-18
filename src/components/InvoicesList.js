@@ -5,20 +5,20 @@ import { CircularProgress, Typography, ListItem, ListItemSecondaryAction,  IconB
 import Delete from '@material-ui/icons/Delete'
 
 class InvoicesList extends Component {
-
     UNSAFE_componentWillMount() {
         this.props.fetchInvoices();
     }
-
     handleDelete = (obj) => {
         this.props.deleteInvoice(obj);
     }
-
     renderInvoices() {
         const {data} = this.props;
         let arrData = [];
         for (const key in data.invoices) {
             arrData.push(data.invoices[key]);
+        }
+        if (data && data.invoices == null) {
+            return <Typography color="secondary">You don't have any invoices yet.</Typography>
         }
         return arrData.map((obj, i) => {
             return (
@@ -28,17 +28,14 @@ class InvoicesList extends Component {
                         <IconButton color='primary' onClick={() => this.handleDelete(obj)} ><Delete/></IconButton>
                     </ListItemSecondaryAction>
                 </ListItem>
-
-
             )
         });
     }
-
     render() {
         const {data} = this.props;
         return (<div>
                 <Typography >Your invoices</Typography>
-                {!data.invoices ? <CircularProgress /> : this.renderInvoices()}
+                {data.invoices === undefined ? <CircularProgress /> : this.renderInvoices()}
             </div>
         )
     }
